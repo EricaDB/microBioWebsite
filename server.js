@@ -4,7 +4,7 @@ var app = express();
 var server = http.createServer(app);
 var bodyParser = require("body-parser");
 
-server.listen(8000);
+server.listen(8080);
 // these allow req.body (for handling HTTP requests on server-side):
 app.use(bodyParser.urlencoded({
 	extended: true
