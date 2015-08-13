@@ -22,17 +22,23 @@
     <button id="test_button">Click Me</button>
 
     <div class="container-fluid" style="text-align: center;">
-      <div class="row" id="row_1">
-        <div class="col-xs-6">Testing</div> <!--this col spans 6 of 12 cells of the grid-->
-        <div class="col-xs-6">Erica Danielle Johnson</div>
-      </div>
-      <div class "row" id="row_2">
-        <div class="col-xs-12">One Column in Row 2</div>
-      </div>
-      <div class "row" id="row_3">
-        <!--columns don't have to take up the whole 12 grid cells-->
-        <div class="col-xs-3">another column</div>
-        <div class="col-xs-3">another column</div>
+      <div class="row" id="main_row">
+        <div class="col-xs-3">left column for displaying other information</div>
+        <div class="col-xs-6">Main Animation/display area</div>
+        <div class="col-xs-3">
+          <div class="row">
+            <div class="col-xs-4">Name of Graph</div>
+            <div class="col-xs-8">Graph 1</div>
+          </div>
+          <div class="row">
+            <div class="col-xs-4">Name of Graph</div>
+            <div class="col-xs-8">Graph 2</div>
+          </div>
+          <div class="row">
+            <div class="col-xs-4">Name of Graph</div>
+            <div class="col-xs-8">Graph 3</div>
+          </div>
+        </div>
       </div>
     </div>
 
