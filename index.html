@@ -23,10 +23,50 @@
 
     <div class="container-fluid" style="text-align: center;">
       <div class="row" id="main_row">
-        <div class="col-xs-3">left column for displaying other information</div>
-        <div class="col-xs-6" id="target">Main Animation/display area</div>
+        <div class="col-xs-3" id="targetLeft">left column for displaying other information</div>
+        <div class="col-xs-6" id="targetMain">Main Animation/display area</div>
 		<body>
 			<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
+			<canvas id="canvas"></canvas>
+			<script src="http://d3js.org/d3.v3.min.js"></script>
+			<script>
+				//var num = 20000;
+				var num = 1000;
+				
+				var canvas = document.getElementById("canvas");
+				//var canvas = document.getElementById("#targetMain");
+				//var canvas = d3.select("#targetMain").append("svg")
+				//var width = canvas.width = 960;
+				//var height = canvas.height = 500;
+				var width = canvas.width = 160;
+				var height = canvas.height = 100;
+				var ctx = canvas.getContext("2d");
+				
+				var particles = d3.range(num).map(function(i) {
+				  return [Math.round(width*Math.random()), Math.round(height*Math.random())];
+				}); 
+				
+				d3.timer(step);
+				
+				function step() {
+				  ctx.fillStyle = "rgba(255,255,255,0.3)";
+				  ctx.fillRect(0,0,width,height);
+				  ctx.fillStyle = "rgba(0,0,0,0.5)";
+				  particles.forEach(function(p) {
+				    p[0] += Math.round(2*Math.random()-1);
+				    p[1] += Math.round(2*Math.random()-1);
+				    if (p[0] < 0) p[0] = width;
+				    if (p[0] > width) p[0] = 0;
+				    if (p[1] < 0) p[1] = height;
+				    if (p[1] > height) p[1] = 0;
+				    drawPoint(p);
+				  });
+				};
+				
+				function drawPoint(p) {
+				  ctx.fillRect(p[0],p[1],1,1);
+				};
+			</script>
 			<script>
 			
 			//var width = 960,
@@ -35,7 +75,7 @@
 			    height = 200;
 			
 			//var nodes = d3.range(200).map(function() { return {radius: Math.random() * 12 + 4}; }),
-			var nodes = d3.range(50).map(function() { return {radius: Math.random() * 6 + 2}; }),
+			var nodes = d3.range(50).map(function() { return {radius: Math.random() * 4 + 2}; }),
 			    root = nodes[0],
 			    color = d3.scale.category10();
 			
@@ -52,7 +92,7 @@
 			force.start();
 			
 			//var svg = d3.select("body").append("svg")
-			var svg = d3.select("#target").append("svg")
+			var svg = d3.select("#targetMain").append("svg")
 			    .attr("width", width)
 			    .attr("height", height);
 			
@@ -106,6 +146,10 @@
 			  };
 			}
 			</script>
+<style>
+html, body { margin: 0; padding: 0; }
+</style>
+			
 		</body>
         <div class="col-xs-3">
           <div class="row">
