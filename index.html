@@ -24,15 +24,18 @@
     <div class="container-fluid" style="text-align: center;">
       <div class="row" id="main_row">
         <div class="col-xs-3">left column for displaying other information</div>
-        <div class="col-xs-6">Main Animation/display area</div>
+        <div class="col-xs-6" id="target">Main Animation/display area</div>
 		<body>
 			<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
 			<script>
 			
-			var width = 960,
-			    height = 500;
+			//var width = 960,
+		    //height = 500;
+			var width = 260,
+			    height = 200;
 			
-			var nodes = d3.range(200).map(function() { return {radius: Math.random() * 12 + 4}; }),
+			//var nodes = d3.range(200).map(function() { return {radius: Math.random() * 12 + 4}; }),
+			var nodes = d3.range(50).map(function() { return {radius: Math.random() * 6 + 2}; }),
 			    root = nodes[0],
 			    color = d3.scale.category10();
 			
@@ -41,13 +44,15 @@
 			
 			var force = d3.layout.force()
 			    .gravity(0.05)
-			    .charge(function(d, i) { return i ? 0 : -2000; })
+			    //.charge(function(d, i) { return i ? 0 : -2000; })
+			    .charge(function(d, i) { return i ? 0 : -300; })
 			    .nodes(nodes)
 			    .size([width, height]);
 			
 			force.start();
 			
-			var svg = d3.select("body").append("svg")
+			//var svg = d3.select("body").append("svg")
+			var svg = d3.select("#target").append("svg")
 			    .attr("width", width)
 			    .attr("height", height);
 			
@@ -77,7 +82,8 @@
 			});
 			
 			function collide(node) {
-			  var r = node.radius + 16,
+				  //var r = node.radius + 16,
+				  var r = node.radius + 4,
 			      nx1 = node.x - r,
 			      nx2 = node.x + r,
 			      ny1 = node.y - r,
